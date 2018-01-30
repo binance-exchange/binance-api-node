@@ -1,7 +1,4 @@
-// Built With ♡ 'PK' (www.pavel-kaminsky.com)
-
 // tslint:disable:interface-name
-import {WebSocket} from "binance-api-node";
 import Depth = Results.Depth;
 import PartialDepth = Results.PartialDepth;
 import Ticker = Results.Ticker;
@@ -32,13 +29,9 @@ declare module 'binance-api-node' {
 
     export interface Binance {
         accountInfo(): Promise<Account>;
-
         order(options: NewOrder): Promise<Order>;
-
         prices(): Promise<{ [index: string]: string }>;
-
         time(): Promise<number>;
-
         ws: WebSocket;
     }
 
