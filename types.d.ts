@@ -1,11 +1,4 @@
 // tslint:disable:interface-name
-import Depth = Results.Depth;
-import PartialDepth = Results.PartialDepth;
-import Ticker = Results.Ticker;
-import Candle = Results.Candle;
-import Trade = Results.Trade;
-import Message = Results.Message;
-
 declare module 'binance-api-node' {
     export default function (options?: { apiKey: string; apiSecret: string }): Binance;
 
@@ -95,9 +88,7 @@ declare module 'binance-api-node' {
         | 'TAKE_PROFIT_LIMIT';
 
     export type TimeInForce = 'GTC' | 'IOC';
-}
 
-declare module Results {
     interface Depth {
         eventType: string;
         eventTime: number;
@@ -193,5 +184,4 @@ declare module Results {
             locked: string;
         };
     }
-
 }
