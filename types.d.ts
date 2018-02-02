@@ -189,7 +189,7 @@ declare module 'binance-api-node' {
         eventTime: number;
     }
 
-    interface Balances extends Message {
+    interface Balances {
         [key: string]: {
             available: string;
             locked: string;
