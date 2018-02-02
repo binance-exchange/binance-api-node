@@ -1,4 +1,6 @@
 // tslint:disable:interface-name
+import {OrderFill} from "binance-api-node";
+
 declare module 'binance-api-node' {
     export default function (options?: { apiKey: string; apiSecret: string }): Binance;
 
@@ -51,6 +53,13 @@ declare module 'binance-api-node' {
         type: OrderType;
     }
 
+    interface OrderFill {
+        price: string;
+        qty: string;
+        commission: string;
+        commissionAsset: string;
+    }
+
     interface Order {
         clientOrderId: string;
         executedQty: string;
@@ -65,6 +74,7 @@ declare module 'binance-api-node' {
         timeInForce: TimeInForce;
         transactTime: number;
         type: OrderType;
+        fills: OrderFill[];
     }
 
     export type OrderSide = 'BUY' | 'SELL';
