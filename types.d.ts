@@ -35,7 +35,7 @@ declare module 'binance-api-node' {
         allTickers: (callback: (tickers: Ticker[]) => void) => Function;
         candles: (pair: string, period: string, callback: (ticker: Candle) => void) => Function;
         trades: (pairs: string[], callback: (trade: Trade) => void) => Function;
-        user: ( callback: (msg: BalanceMessage|ExecutionReportMessage) => void) => Function;
+        user: ( callback: (msg: AccountMessage|ExecutionReportMessage) => void) => Function;
     }
 
     export interface NewOrder {
@@ -196,7 +196,7 @@ declare module 'binance-api-node' {
         };
     }
 
-    interface BalanceMessage extends Message {
+    interface AccountMessage extends Message {
         balances: Balances;
         makerCommissionRate: number;
         takerCommissionRate: number;
