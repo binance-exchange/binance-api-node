@@ -97,7 +97,7 @@ declare module 'binance-api-node' {
         | 'TAKE_PROFIT'
         | 'TAKE_PROFIT_LIMIT';
 
-    export type TimeInForce = 'GTC' | 'IOC' | 'FOC';
+    export type TimeInForce = 'GTC' | 'IOC' | 'FOK';
 
     export type ExecutionType =
         | 'NEW'
