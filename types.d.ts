@@ -74,7 +74,7 @@ declare module 'binance-api-node' {
         timeInForce: TimeInForce;
         transactTime: number;
         type: OrderType;
-        fills: OrderFill[];
+        fills?: OrderFill[];
     }
 
     export type OrderSide = 'BUY' | 'SELL';
