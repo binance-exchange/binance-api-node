@@ -35,7 +35,7 @@ declare module 'binance-api-node' {
         allTickers: (callback: (tickers: Ticker[]) => void) => Function;
         candles: (pair: string, period: string, callback: (ticker: Candle) => void) => Function;
         trades: (pairs: string[], callback: (trade: Trade) => void) => Function;
-        user: ( callback: (msg: Message) => void) => Function;
+        user: ( callback: (msg: BalanceMessage|ExecutionReportMessage) => void) => Function;
     }
 
     export interface NewOrder {
@@ -88,6 +88,18 @@ declare module 'binance-api-node' {
         | 'TAKE_PROFIT_LIMIT';
 
     export type TimeInForce = 'GTC' | 'IOC';
+
+    export type ExecutionType =
+        | 'NEW'
+        | 'CANCELED'
+        | 'REPLACED'
+        | 'REJECTED'
+        | 'TRADE'
+        | 'EXPIRED';
+
+    export type EventType =
+        | 'executionReport'
+        | 'account';
 
     interface Depth {
         eventType: string;
@@ -173,15 +185,52 @@ declare module 'binance-api-node' {
     }
 
     interface Message {
-        eventType: string;
+        eventType: EventType;
         eventTime: number;
-        balances: Balances;
     }
 
-    interface Balances {
+    interface Balances extends Message {
         [key: string]: {
             available: string;
             locked: string;
         };
+    }
+
+    interface BalanceMessage extends Message {
+        balances: Balances;
+        makerCommissionRate: number;
+        takerCommissionRate: number;
+        buyerCommissionRate: number;
+        sellerCommissionRate: number;
+        canTrade: boolean;
+        canWithdraw: boolean;
+        canDeposit: boolean;
+        lastAccountUpdate: number;
+    }
+
+    interface ExecutionReportMessage extends Message {
+        symbol: string;
+        newClientOrderId: string;
+        originalClientOrderId: string;
+        side: OrderSide;
+        orderType: OrderType;
+        timeInForce: TimeInForce;
+        quantity: string;
+        price: string;
+        executionType: ExecutionType;
+        stopPrice: string;
+        icebergQuantity: string;
+        orderStatus: OrderStatus;
+        orderRejectReason: string;
+        orderId: number;
+        orderTime: number;
+        lastTradeQuantity: string;
+        totalTradeQuantity: string;
+        priceLastTrade: string;
+        commission: string;
+        commissionAsset: string;
+        tradeId: number;
+        isOrderWorking: boolean;
+        isBuyerMaker: boolean;
     }
 }
