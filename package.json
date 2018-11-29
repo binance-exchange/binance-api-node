@@ -8,8 +8,7 @@
         "test": "ava",
         "cover": "nyc ava",
         "report": "npm run cover && nyc report --reporter=text-lcov | coveralls",
-        "lint": "eslint src",
-        "install": "npm run build"
+        "lint": "eslint src"
     },
     "dependencies": {
         "html5-websocket": "^2.0.2",
