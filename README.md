@@ -2,7 +2,7 @@
 
 > A complete API wrapper for the [Binance](https://binance.com) API.
 
-Note: This wrapper uses Promises, if they are not supported in your environment, you might
+[Note]: This wrapper uses Promises, if they are not supported in your environment, you might
 want to add [a polyfill](https://github.com/stefanpenner/es6-promise) for them.
 
 For PRs or issues, head over to the [source repository](https://github.com/HyperCubeProject/binance-api-node).
