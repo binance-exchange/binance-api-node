@@ -9,8 +9,8 @@ const BASE = 'https://api.binance.com'
  * Build query string for uri encoded url based on json object
  */
 const makeQueryString = q =>
-  q
-    ? `?${Object.keys(q)
+    q ?
+    `?${Object.keys(q)
         .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(q[k])}`)
         .join('&')}`
     : ''
@@ -240,6 +240,7 @@ export default opts => {
     withdrawHistory: payload => pCall('/wapi/v3/withdrawHistory.html', payload),
     depositHistory: payload => pCall('/wapi/v3/depositHistory.html', payload),
     depositAddress: payload => pCall('/wapi/v3/depositAddress.html', payload),
+    tradeFee: payload => pCall('/wapi/v3/tradeFee.html', payload),
 
     getDataStream: () => pCall('/v1/userDataStream', null, 'POST', true),
     keepDataStream: payload => pCall('/v1/userDataStream', payload, 'PUT', false, true),
