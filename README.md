@@ -635,7 +635,7 @@ Note: If `frondId`, `startTime`, and `endTime` are not sent, the most recent agg
 Get recent trades of a symbol.
 
 ```js
-console.log(await client.futuresTrades({ symbol: 'ETHBTC' }))
+console.log(await client.futuresTrades({ symbol: 'ETHUSDT' }))
 ```
 
 | Param  | Type   | Required | Default | Description |
