@@ -455,6 +455,10 @@ declare module 'binance-api-node' {
     useServerTime?: boolean
     type: OrderType
     newOrderRespType?: NewOrderRespType
+    closePosition?: boolean
+    workingType: WorkingType
+    callbackRate?: number
+    activationPrice?: number
   }
 
   export interface NewOcoOrder {
@@ -532,6 +536,7 @@ declare module 'binance-api-node' {
     | 'STOP_LOSS_LIMIT'
     | 'TAKE_PROFIT'
     | 'TAKE_PROFIT_LIMIT'
+    | 'TRAILING_STOP_MARKET'
 
   export type ListOrderStatus = 'EXECUTING' | 'ALL_DONE' | 'REJECT'
 
@@ -542,6 +547,8 @@ declare module 'binance-api-node' {
   export type NewOrderRespType = 'ACK' | 'RESULT' | 'FULL'
 
   export type TimeInForce = 'GTC' | 'IOC' | 'FOK'
+
+  export type WorkingType = 'MARK_PRICE' | 'CONTRACT_PRICE'
 
   export enum OrderRejectReason {
     ACCOUNT_CANNOT_SETTLE = 'ACCOUNT_CANNOT_SETTLE',
