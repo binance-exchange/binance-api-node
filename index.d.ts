@@ -155,6 +155,7 @@ declare module 'binance-api-node' {
   }
 
   export interface Binance {
+    capitalConfigs(): Promise<CapitalConfigsResult[]>
     accountInfo(options?: { useServerTime: boolean }): Promise<Account>
     tradeFee(): Promise<TradeFeeResult>
     aggTrades(options?: {
@@ -426,6 +427,44 @@ declare module 'binance-api-node' {
     quotePrecision: number
     status: string
     symbol: string
+  }
+  
+  export interface CapitalConfig {
+    coin: string;
+    depositAllEnable: boolean;
+    withdrawAllEnable: boolean;
+    name: string;
+    free: string;
+    locked: string;
+    freeze: string;
+    withdrawing: string;
+    ipoing: string;
+    ipoable: string;
+    storage: string;
+    isLegalMoney: boolean;
+    trading: boolean;
+    networkList: NetworkList[];
+  }
+
+  export interface NetworkList {
+    network: string;
+    coin: string;
+    withdrawIntegerMultiple: string;
+    isDefault: boolean;
+    depositEnable: boolean;
+    withdrawEnable: boolean;
+    depositDesc: string;
+    withdrawDesc: string;
+    specialTips?: string;
+    name: string;
+    resetAddressStatus: boolean;
+    addressRegex: string;
+    memoRegex: string;
+    withdrawFee: string;
+    withdrawMin: string;
+    withdrawMax: string;
+    minConfirm: number;
+    unLockConfirm: number;
   }
 
   export interface ExchangeInfo {
