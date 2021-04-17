@@ -164,19 +164,23 @@ const privateCall = ({ apiKey, apiSecret, endpoints, getTime = defaultGetTime, p
   }
 
   return (data && data.useServerTime
-    ? pubCall('/api/v3/time').then(r => r.serverTime)
+    ? pubCall('/api/v3/time').then(r => {
+      delete data.useServerTime
+    
+      return r.serverTime
+    })
     : Promise.resolve(getTime())
   ).then(timestamp => {
-    if (data) {
-      delete data.useServerTime
-    }
-
-    const signature = crypto
-      .createHmac('sha256', apiSecret)
-      .update(makeQueryString({ ...data, timestamp }).substr(1))
-      .digest('hex')
-
-    const newData = noExtra ? data : { ...data, timestamp, signature }
+    const newData = noExtra
+      ? data
+      : {
+        ...data,
+        timestamp,
+        crypto
+          .createHmac('sha256', apiSecret)
+          .update(makeQueryString({ ...data, timestamp }).substr(1))
+          .digest('hex')
+      }
 
     return sendResult(
       fetch(
