@@ -1967,6 +1967,7 @@ console.log(await client.dustTransfer({ asset: ['ETH', 'LTC', 'TRX'] }))
 
 <details>
 <summary>Output</summary>
+
 ```js
     
 {
